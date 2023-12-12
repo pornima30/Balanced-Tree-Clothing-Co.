@@ -1,0 +1,32 @@
+-- 1. High Level Sales Analysis
+-- Solution
+-- What was the total quantity sold for all products?
+/*
+SELECT 
+  product.product_name, 
+  SUM(sales.qty) AS total_quantity
+FROM balanced_tree.sales
+INNER JOIN balanced_tree.product_details AS product
+	ON sales.prod_id = product.product_id
+GROUP BY product.product_name;
+*/
+-- What is the total generated revenue for all products before discounts?
+/*
+SELECT 
+  product.product_name, 
+  SUM(sales.qty) * SUM(sales.price) AS total_revenue
+FROM balanced_tree.sales
+INNER JOIN balanced_tree.product_details AS product
+	ON sales.prod_id = product.product_id
+GROUP BY product.product_name;
+*/
+-- What was the total discount amount for all products?
+/*
+SELECT 
+  product.product_name, 
+  SUM(sales.qty * sales.price * sales.discount/100) AS total_discount
+FROM balanced_tree.sales
+INNER JOIN balanced_tree.product_details AS product
+	ON sales.prod_id = product.product_id
+GROUP BY product.product_name;
+*/
